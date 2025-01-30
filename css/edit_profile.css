@@ -1,0 +1,123 @@
+/* 全体のスタイル */
+body {
+    font-family: Arial, sans-serif; /* フォントを見やすく */
+    background-color: #f9f0f6;  /* 背景色（優しいピンク系） */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #3a4e7d; /* ヘッダーの文字色をダークブルーにしてアクセント */
+}
+
+/* フォーム全体のスタイル */
+form {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* フォームのラベル */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #ad3d3d; /* ラベルの色をダークピンクに */
+}
+
+/* 入力フィールドのスタイル */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff; /* 背景色 */
+}
+
+/*select要素のスタイル*/
+select {
+    -webkit-appearance: none; /* Safariのデフォルトスタイルを消す */
+    -moz-appearance: none;    /* Firefoxのデフォルトスタイルを消す */
+    appearance: none;         /* 他のブラウザのデフォルトスタイルを消す */
+    background-color: #fff;   /* 背景色 */
+    background-image: url('data:image/svg+xml,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 8 6%22%3e%3cpath d=%22M7 1L4 4 1 1%22 fill=%22none%22 stroke=%23000%22 stroke-width=%222%22/%3e%3c/svg%3e'); /* ドロップダウンの矢印 */
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+/* 読み取り専用フィールドのスタイル */
+input[readonly],
+textarea[readonly] {
+    background-color: #f0f0f0; /* 背景色 */
+    color: #888; /* テキスト色 */
+    cursor: not-allowed; /* 禁止カーソル */
+    border: 1px solid #ddd; /* 境界線 */
+}
+
+/* 読み取り専用フィールドにフォーカスしたときのスタイル */
+input[readonly]:focus,
+textarea[readonly]:focus {
+    border-color: #bbb;
+    outline: none;
+}
+
+/* 編集可能なフィールドにフォーカスしたときのスタイル */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #e2b2c8; /* ピンク色で強調 */
+    outline: none;
+}
+
+/* サブミットボタン */
+input[type="submit"] {
+    background-color: #f8d9e4; /* 優しいピンク色 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+/* サブミットボタンのホバー時 */
+input[type="submit"]:hover {
+    background-color: #e2b2c8; /* 濃いピンクに変化 */
+}
+
+/* サブミットボタンのアクティブ時 */
+input[type="submit"]:active {
+    background-color: #d48aab; /* 少しダークなピンク */
+}
+
+/* エラーメッセージのスタイル */
+.error {
+    color: #dc3545; /* エラーの赤色 */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* メディアクエリ (レスポンシブデザイン) */
+@media screen and (max-width: 768px) {
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+}

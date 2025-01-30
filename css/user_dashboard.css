@@ -1,0 +1,133 @@
+/* ユーザーダッシュボード全体のデザイン */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* 落ち着いたライトグレーの背景 */
+    color: #333; /* テキストの色 */
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダーのデザイン */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #3a4e7d; /* ネイビー色 */
+    margin-top: 50px;
+}
+
+/* サブヘッダー */
+h2 {
+    font-size: 2em;
+    color: #3a4e7d; /* ネイビー色 */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* ユーザー情報メッセージ */
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555; /* ダークグレー */
+}
+
+/* 編集リンクのデザイン */
+p a {
+    display: inline-block;
+    background-color: #e1a1d0; /* 優しいピンク色 */
+    color: white;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+/* 編集リンクのホバー効果 */
+p a:hover {
+    background-color: #d59bc2; /* 少し濃い目のピンク */
+    transform: scale(1.05);
+}
+
+/* 編集リンクのアクティブ時効果 */
+p a:active {
+    transform: scale(0.98);
+}
+
+/* ログアウトボタンのデザイン */
+form {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#logout-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none; /* ボタンの周りの青い枠線を消す */
+}
+
+#logout-img {
+    width: auto;
+    height: 50px; /* 画像の高さを調整 */
+    transition: transform 0.3s ease, filter 0.2s ease; /* 変化のアニメーション */
+}
+
+/* ログアウトボタンのホバー時 */
+#logout-btn:hover #logout-img {
+    transform: scale(1.2); /* ホバー時に画像が少し大きくなる */
+    filter: brightness(1.2); /* 少し明るくなる */
+}
+
+/* ログアウトボタンのアクティブ時 */
+#logout-btn:active #logout-img {
+    transform: scale(1); /* クリック時に元のサイズに戻る */
+    filter: brightness(1); /* 明るさも元に戻る */
+}
+
+/* ダッシュボードに戻るボタンのデザイン */
+#back-to-dashboard {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+#back-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none; /* ボタンの周りの青い枠線を消す */
+}
+
+#dashboard-img {
+    width: 40px; /* 画像の横幅を調整 */
+    height: 40px; /* 画像の高さを調整 */
+    transition: transform 0.3s ease, filter 0.2s ease; /* 変化のアニメーション */
+}
+
+/* ダッシュボードに戻るボタンのホバー時 */
+#back-to-dashboard:hover #dashboard-img {
+    transform: scale(1.2); /* ホバー時に画像が少し大きくなる */
+    filter: brightness(1.2); /* 少し明るくなる */
+}
+
+/* ダッシュボードに戻るボタンのアクティブ時 */
+#back-to-dashboard:active #dashboard-img {
+    transform: scale(1); /* クリック時に元のサイズに戻る */
+    filter: brightness(1); /* 明るさも元に戻る */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em; /* 小さな画面でフォントサイズを調整 */
+    }
+
+    p a {
+        padding: 8px 16px; /* 小さな画面でボタンのサイズを調整 */
+    }
+
+    #logout-img, #dashboard-img {
+        height: 25px; /* 画像ボタンのサイズ調整 */
+    }
+}

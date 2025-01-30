@@ -1,0 +1,104 @@
+/* ログインページのデザイン */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* ライトグレー（グレージュ）の背景 */
+    color: #333; /* テキストの色 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    flex-direction: column; /* 子要素を縦に並べる */
+}
+
+h2 {
+    font-size: 2em;
+    color: #3a4e7d; /* ネイビー色 */
+    margin-bottom: 20px; /* タイトルの下の余白 */
+}
+
+form {
+    background-color: #ffffff; /* 背景白 */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column; /* フォーム内の要素を縦に並べる */
+    align-items: center; /* 要素を中央に揃える */
+}
+
+input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #f7f7f7; /* 優しいグレー背景 */
+    color: #333;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #3a4e7d; /* ネイビー色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+button[type="submit"]:hover {
+    background-color: #2b3b5f; /* ダークネイビー */
+    transform: scale(1.05);
+}
+
+button[type="button"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #e1a1d0; /* 優しいピンク色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+button[type="button"]:hover {
+    background-color: #d59bc2; /* 少し濃い目のピンク */
+    transform: scale(1.05);
+}
+
+button[type="button"]:active {
+    transform: scale(0.98);
+}
+
+p {
+    color: #f44336; /* エラーメッセージ用の赤 */
+    font-size: 1.1rem;
+    margin-top: 15px; /* エラーメッセージに余白を追加 */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.8em;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    button[type="submit"], button[type="button"] {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,167 @@
+/* 管理者ページ全体のデザイン */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* 落ち着いたライトグレーの背景 */
+    color: #333; /* テキストの色 */
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダーのデザイン */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #3a4e7d; /* ネイビー色 */
+    margin-top: 50px;
+}
+
+/* サブヘッダー */
+h2 {
+    font-size: 2em;
+    color: #3a4e7d; /* ネイビー色 */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* 管理者ページ内のメッセージ */
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555; /* ダークグレー */
+}
+
+/* リストのスタイル */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 30px auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+/* リストアイテムのデザイン */
+ul li {
+    margin: 15px 0;
+    text-align: center;
+}
+
+/* リストリンクのデザイン */
+ul li a {
+    display: inline-block;
+    background-color: #e1a1d0; /* 優しいピンク色 */
+    color: white;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+/* リストリンクのホバー効果 */
+ul li a:hover {
+    background-color: #d59bc2; /* 少し濃い目のピンク */
+    transform: scale(1.05);
+}
+
+/* ボタンがアクティブな時の効果 */
+ul li a:active {
+    transform: scale(0.98);
+}
+
+/* ログアウトボタンのデザイン */
+form {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button[type="submit"], button[type="button"] {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background-color: #3a4e7d; /* ネイビー色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+button[type="submit"]:hover {
+    background-color: #2a3d5d; /* 少し暗いネイビー */
+    transform: scale(1.05);
+}
+
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* 管理者ページのリンクのデザイン */
+.admin-link a {
+    display: inline-block;
+    background-color: #e1a1d0; /* 優しいピンク色 */
+    color: white;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+/* リンクのホバー効果 */
+.admin-link a:hover {
+    background-color: #d59bc2; /* 少し濃い目のピンク */
+    transform: scale(1.05);
+}
+
+/* ログアウトボタンとダッシュボードに戻るボタンの横並び */
+#button-container {
+    display: flex;
+    justify-content: center; /* ボタンを均等に配置 */
+    gap: 20px; /* ボタン間のスペース */
+    margin-top: 30px;
+}
+
+/* 各ボタン（ログアウト・ダッシュボード）に共通のスタイル */
+button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0; /* 余計なスペースを排除 */
+    cursor: pointer; /* カーソルをポインターに */
+}
+
+/* ログアウトボタンとダッシュボードボタンの画像 */
+#logout-img, #dashboard-img {
+    width: auto;
+    height: 50px; /* 画像の高さを調整 */
+    transition: transform 0.3s ease, filter 0.2s ease;
+}
+
+/* ホバー時に画像が少し大きくなる */
+#logout:hover #logout-img, #back-btn:hover #dashboard-img {
+    transform: scale(1.2);
+    filter: brightness(1.2); /* 明るくなる */
+}
+
+/* クリック時に元のサイズに戻る */
+#logout:active #logout-img, #back-btn:active #dashboard-img {
+    transform: scale(1);
+    filter: brightness(1);
+}
+
+/* ボタンの画像がきれいに揃うように調整 */
+button img {
+    display: block; /* 画像をブロック要素にして、親要素内で中央揃え */
+    max-width: 100%; /* 画像が親要素内で適切にサイズ調整される */
+    height: auto; /* 画像の高さを自動調整 */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em; /* 小さな画面でフォントサイズを調整 */
+    }
+
+    ul {
+        width: 90%;
+    }
+}
