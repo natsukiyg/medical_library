@@ -26,11 +26,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // パスワードが一致した場合、セッションにユーザー情報をセット
             $_SESSION['user_name'] = $user['name']; // ユーザー名を保存
             $_SESSION['user_id'] = $user['memberId'];
-            $_SESSION['user_role'] = $user['user_role'];  // 役割を保存（0, 1, 2）
-            $_SESSION['is_approved'] = $user['is_approved']; // 承認状態を保存（0:未承認, 1:承認済）
-            $_SESSION['hospitalName'] = $user['hospitalName']; // 病院名を保存
 
-            // 全ユーザーがユーザーページに遷移
+            //user_role と approval_status をuser_role_table、またはuser_hospital_tableから取得
+            $user_id = $user['memberId'];
+
+            // user_role_table からuser_roleとapproval_statusを取得
+            $role_sql = "SELECT user_role, approval_status FROM user_role_table WHERE memberId = :memberId";
+            $role_stmt = $pdo->prepare($role_sql);
+            $role_stmt->bindParam(':memberId', $user['memberId'], PDO::PARAM_INT);
+            $role_stmt->execute();
+
+            $role = $role_stmt->fetch(PDO::FETCH_ASSOC);
+
+            /* //デバッグ用
+            echo "<pre>";
+            print_r($role);
+            echo "</pre>"; */
+
+            //user_roleとapproval_statusが取得できた場合、セッションにセット
+            if ($role) {
+                $_SESSION['user_role'] = $role['user_role'];  // 役割を保存（0, 1, 2）
+                $_SESSION['approval_status'] = $role['approval_status']; // 承認状態を保存（pending,approved,denied）
+            } else {
+                $_SESSION['user_role'] = null; // 役割がなければnull
+                $_SESSION['approval_status'] = null; // 承認状態がなければnull
+            }
+ 
+            // 病院名の取得（user_hospital_table から取得）
+            $hospital_sql = "SELECT h.hospitalName FROM user_hospital_table uht
+                             JOIN hospital_table h ON uht.hospitalId = h.hospitalId
+                             WHERE uht.memberId = :memberId";
+            $hospital_stmt = $pdo->prepare($hospital_sql);
+            $hospital_stmt->bindParam(':memberId', $user['memberId'], PDO::PARAM_INT);
+            $hospital_stmt->execute();
+            $hospital = $hospital_stmt->fetch(PDO::FETCH_ASSOC);
+
+            // 病院名が取得できた場合、セッションにセット
+            if ($hospital) {
+                $_SESSION['hospitalName'] = $hospital['hospitalName'];
+            } else {
+                $_SESSION['hospitalName'] = null; // 病院名がなければnull
+            }    
+
+            /* //セッションの内容をデバッグ出力（確認用）
+            echo "<pre>";
+            print_r($_SESSION);
+            echo "</pre>";  */
+
+             // 全ユーザーがユーザーページに遷移
             header('Location:user_dashboard.php'); // ユーザーのダッシュボードなどにリダイレクト
             exit;
         } else {

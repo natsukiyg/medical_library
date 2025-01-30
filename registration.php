@@ -10,11 +10,11 @@ include("db_config.php"); // db_config.phpの中身を読み込むので、$dbn�
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>メンバー登録フォーム(DB ver3.0)</title>
+    <title>ユーザー登録フォーム</title>
     <link rel="stylesheet" href="./css/registration.css">
 </head>
 <body>
-    <h1>メンバー登録フォーム</h1>
+    <h1>ユーザー登録フォーム</h1>
 
     <form action="create.php" method="POST">
         <!-- メンバー情報 -->
@@ -89,14 +89,6 @@ include("db_config.php"); // db_config.phpの中身を読み込むので、$dbn�
                 <option value="沖縄県">沖縄県</option>
             </select><br>
 
-            <label for="hospitalName">所属施設：</label>
-            <input type="text" id="hospitalName" name="hospitalName" required><br>
-
-            <!-- ユーザー権限 -->
-            <label for="user_role">権限：</label><br>
-            <input type="radio" id="role_0" name="user_role" value="0" required> スタッフ（閲覧のみ）
-            <input type="radio" id="role_1" name="user_role" value="1"> チームメンバー（編集可能）
-            <input type="radio" id="role_2" name="user_role" value="2"> 管理者<br>
         </fieldset>
 
         <!-- アンケート情報 -->
