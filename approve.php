@@ -10,7 +10,11 @@ if ($_SESSION['user_role'] != 2) {
 
 // 承認待ちユーザーを取得
 try {
-    $sql = "SELECT memberId, name, email, hospitalId, user_role, registered_at FROM users_table WHERE is_approved = 0";
+    // users_table と hospital_table を LEFT JOIN して病院名を取得
+    $sql = "SELECT u.memberId, u.name, u.email, u.hospitalId, u.user_role, u.registered_at, h.hospitalName
+            FROM users_table u
+            LEFT JOIN hospital_table h ON u.hospitalId = h.hospitalId
+            WHERE u.is_approved = 0";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $users = $stmt->fetchAll();
@@ -29,7 +33,7 @@ try {
     <link rel="stylesheet" href="./css/admin.css">
     <script type="text/javascript">
         // 承認・拒否時に確認ポップアップを表示
-        function confirmAction(userName, hospitalId, userRole, action) {
+        function confirmAction(userName, hospitalName, userRole, action) {
             let role = "";
             if (userRole == 1) {
                 role = "チームメンバー";
@@ -39,7 +43,7 @@ try {
                 role = "スタッフ";
             }
             let actionText = (action == 'approve') ? "承認" : "拒否";
-            let message = userName + " さん（所属施設名：" + hospitalId + "）の " + role + " を " + actionText + " しますか？";
+            let message = userName + " さん（所属施設名：" + hospitalName + "）の " + role + " を " + actionText + " しますか？";
 
             return confirm(message);  // ユーザーがOKを押した場合のみ送信
         }
@@ -77,7 +81,7 @@ try {
         <td><?php echo htmlspecialchars($user['name']); ?></td>
         <td><?php echo htmlspecialchars($user['email']); ?></td>
         <td>
-            <?php echo htmlspecialchars($user['hospitalId']) ? htmlspecialchars($user['hospitalId']) : "未設定"; ?>
+            <?php echo htmlspecialchars($user['hospitalName']) ? htmlspecialchars($user['hospitalName']) : "未設定"; ?>
         </td>
         <td>
             <?php
@@ -96,7 +100,7 @@ try {
                 <input type="hidden" name="user_id" value="<?php echo $user['memberId']; ?>">
                 
                 <!-- 承認ボタン -->
-                <button type="submit" name="action" value="approve" onclick="return confirmAction('<?php echo addslashes($user['name']); ?>', '<?php echo addslashes($user['hospitalId']); ?>', <?php echo $user['user_role']; ?>, 'approve');">
+                <button type="submit" name="action" value="approve" onclick="return confirmAction('<?php echo addslashes($user['name']); ?>', '<?php echo addslashes($user['hospitalName']); ?>', <?php echo $user['user_role']; ?>, 'approve');">
                     承認
                 </button>
 

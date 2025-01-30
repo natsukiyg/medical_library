@@ -30,7 +30,9 @@ if (isset($_POST['delete'])) {
 }
 
 // SQL作成
-$sql = 'SELECT * FROM users_table WHERE deleted_at IS NULL'; // deleted_at が NULL のものだけ取得
+$sql = 'SELECT u.*, h.hospitalName FROM users_table u 
+        LEFT JOIN hospital_table h ON u.hospitalId = h.hospitalId
+        WHERE u.deleted_at IS NULL'; // deleted_at が NULL のものだけ取得
 $stmt = $pdo->prepare($sql);
 
 //SQL実行
@@ -72,7 +74,7 @@ foreach ($result as $record) {
         <td>{$record["birthday"]}</td>
         <td>{$record["email"]}</td>
         <td>{$record["address"]}</td>
-        <td>{$record["hospitalId"]}</td>
+        <td>{$record["hospitalName"]}</td> <!-- 施設名を表示 -->
         <td>" . getUserRole($record["user_role"]) . "</td> <!-- 権限を変換 -->
         <td>{$approvalStatus} {$rejectionReason}</td> <!-- 承認状態と拒否理由 -->
         <td>{$record["whereDidYouHear"]}</td>
@@ -119,7 +121,7 @@ foreach ($result as $record) {
                 <th>誕生日</th>
                 <th>メールアドレス</th>
                 <th>住所</th>
-                <th>所属施設</th>
+                <th>所属施設</th> <!-- 所属施設名を表示 -->
                 <th>権限</th>
                 <th>承認状態</th>
                 <th>知ったきっかけ</th>

@@ -4,7 +4,10 @@
 include("db_config.php");
 
 // 削除されたデータを取得（deleted_at が NULL でない）
-$sql = 'SELECT * FROM users_table WHERE deleted_at IS NOT NULL';
+$sql = 'SELECT u.memberId, u.name, u.gender, u.birthday, u.email, u.address, u.hospitalId, u.whereDidYouHear, u.expectations, u.deleted_at, h.hospitalName 
+        FROM users_table u
+        LEFT JOIN hospital_table h ON u.hospitalId = h.hospitalId
+        WHERE u.deleted_at IS NOT NULL';
 $stmt = $pdo->prepare($sql);
 
 // SQL実行（実行に失敗すると `sql error ...` が出力される）
@@ -52,10 +55,9 @@ foreach ($result as $record) {
         <td>{$record["birthday"]}</td>
         <td>{$record["email"]}</td>
         <td>{$record["address"]}</td>
-        <td>{$record["hospitalId"]}</td>
+        <td>" . htmlspecialchars($record["hospitalName"]) . "</td> <!-- 病院名を表示 -->
         <td>{$record["whereDidYouHear"]}</td>
         <td>{$record["expectations"]}</td>
-        <td>{$record["registered_at"]}</td>
         <td>{$record["deleted_at"]}</td>
         <td>
             <!-- 復元ボタン -->
@@ -94,7 +96,7 @@ foreach ($result as $record) {
             <th>誕生日</th>
             <th>メールアドレス</th>
             <th>住所</th>
-            <th>所属施設</th>
+            <th>所属施設</th> <!-- 病院名のカラム -->
             <th>知ったきっかけ</th>
             <th>期待する機能</th>
             <th>削除日時</th>
@@ -102,27 +104,8 @@ foreach ($result as $record) {
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($result as $record): ?>
-            <tr>
-                <td><?= htmlspecialchars($record["memberId"]) ?></td>
-                <td><?= htmlspecialchars($record["name"]) ?></td>
-                <td><?= htmlspecialchars($record["gender"]) ?></td>
-                <td><?= htmlspecialchars($record["birthday"]) ?></td>
-                <td><?= htmlspecialchars($record["email"]) ?></td>
-                <td><?= htmlspecialchars($record["address"]) ?></td>
-                <td><?= htmlspecialchars($record["hospitalId"]) ?></td>
-                <td><?= htmlspecialchars($record["whereDidYouHear"]) ?></td>
-                <td><?= htmlspecialchars($record["expectations"]) ?></td>
-                <td><?= htmlspecialchars($record["deleted_at"]) ?></td>
-                <td>
-                    <!-- 復元ボタン -->
-                    <form method="post" action="deleted_list.php">
-                        <input type="hidden" name="id" value="<?= htmlspecialchars($record['memberId']) ?>">
-                        <input type="submit" name="restore" value="復元">
-                    </form>
-                </td>
-            </tr>
-        <?php endforeach; ?>
+        <?= $output ?>
+    </tbody>
     </table>
 </body>
 </html>
